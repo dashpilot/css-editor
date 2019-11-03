@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<style>
+
+@media only screen and (max-width : 750px) {
+
+}
+</style>
+
+</head>
+<body>
+
+
+<div class="container">
+
+<div class="row">
+<div class="col-md-8" id="preview">
+
+	<div class="row">
+		<div class="col-md-1">h1</div>
+		<div class="col-md-11"><h1>Lorem ipsum dolor site amet, responsivio sanska</h1></div>
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-md-1">h2</div>
+		<div class="col-md-11"><h2>Lorem ipsum dolor site amet, responsivio sanska</h2></div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-1">h3</div>
+		<div class="col-md-11"><h3>Lorem ipsum dolor site amet, responsivio sanska</h3></div>
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-md-1">p</div>
+		<div class="col-md-11"><p>Lorem ipsum dolor site amet</p></div>
+	</div>
+	
+	<!--
+	<div class="row">
+		<div class="col-md-1">.btn</div>
+		<div class="col-md-11"><button class="btn btn-secondary exclude">Button</button></div>
+	</div>
+	-->
+	
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-11"><textarea id="save-area"></textarea></div>
+	</div>
+	
+	
+	
+</div>
+<div class="col-md-4">
+
+
+<div id="css-editor" class="toolpane">
+		
+		
+		<div id="toolpane-header">CSS Editor</div>
+		
+		<div class="content">
+		
+		<div class="description">
+		
+		Click on an element to edit it.
+		
+		</div>
+		
+		<div class="edit-css show-h1 show-h2 show-h3 show-p show-button">
+			
+			<label style="margin-top: 0;">Font Family</label>
+			<input id="font" type="text">
+			
+			
+		</div>
+		
+		<div class="edit-css">2</div>
+		
+		<div class="edit-css show-h1 show-h2 show-h3 show-p show-button">
+			
+			
+			<label>Font Size</label>
+			<input type="number" value="" min="12" max="65" step="1" id="font-size" />
+			
+		</div>
+		
+		
+		<div class="edit-css show-h1 show-h2 show-h3 show-p">
+			
+			
+			<label>Line-height</label>
+			<input type="number" value="" step="1" id="line-height" />
+			
+			
+		</div>
+		
+		
+		<div class="edit-css show-h1 show-h2 show-h3 show-p">
+			
+			
+			<label>Letter-spacing</label>
+			<input type="number" value="" step="0.1" data-decimals="1" id="letter-spacing" />
+			
+			
+		</div>
+		
+		
+		<div class="edit-css show-button">
+			
+			
+			<label>Padding-top and bottom</label>
+			<input type="number" value="" step="1" id="padding-top" />
+			
+			
+		</div>
+		
+		
+		<div class="edit-css show-button">
+			
+			
+			<label>Padding-left and right</label>
+			<input type="number" value="" step="1" id="padding-left" />
+			
+			
+		</div>
+		
+		
+		<div class="edit-css show-button">
+			
+			
+			<label>Border-width</label>
+			<input type="number" value="" step="1" id="border-width" />
+			
+			
+		</div>
+		
+		
+		<div class="edit-css show-button">
+			
+			
+			<label>Border-radius</label>
+			<input type="number" value="" step="1" id="border-radius" />
+			
+			
+		</div>
+		
+		<div class="edit-css show-h1 show-h2 show-h3 show-p show-button">
+			
+			
+				<label>Color</label>
+				<div>
+				<input type="text" id="color" class="color" />
+				</div>
+			
+		</div>
+		
+		
+		<div class="edit-css show-button">
+			<label>Background</label>
+			<div>
+			<input type="text" id="background-color" class="color" />
+			</div>
+		</div>
+		
+		
+		<div class="edit-css show-button">
+			
+		
+			
+				<label>Border-Color</label>
+				<div>
+				<input type="text" id="border-color" class="color" />
+				</div>
+		
+			
+		</div>
+		
+		
+		
+		</div>
+		
+		
+	
+		
+	</div>
+	<a class="button" id="save">Save</a>
+
+		</div>
+	</div>
+	
+	
+	
+
+</div>
+
+
+	
+
+
+<!-- font selector -->
+<script src="assets/fontselect/jquery.fontselect.js"></script>
+<link rel="stylesheet" href="assets/fontselect/styles/fontselect-default.css">
+
+<!-- Color Picker -->	
+<script src="assets/spectrum/spectrum.js"></script>
+<link rel="stylesheet" href="assets/spectrum/spectrum.css" />	
+
+<script src="assets/bootstrap-input-spinner.js"></script>
+
+
+<script>
+var editable = "h1,h2,h3,p";
+
+$(editable).not('.exclude').css('border', '1px solid transparent');
+
+$(editable).not('.exclude').mouseenter(function() {
+    $(this).css('border', '1px solid lightblue');
+	$(this).css('cursor', 'pointer');
+}).mouseleave(function() {
+    $(this).not('.exclude').css('border', '1px solid transparent');
+	$(this).css('cursor', 'pointer');
+});
+
+
+$(editable).on('click', function(){
+	
+	$('.description').hide();
+	
+	$('.current-css').removeClass('current-css');
+	$(this).addClass('current-css');
+	
+	$('.edit-css').hide();
+	
+	let tagname = $(this).prop("tagName").toLowerCase();
+	
+	$('#toolpane-header').html('body &raquo; '+tagname);
+	
+	
+	$('#font-size').val($(this).css('font-size').replace('px', ''));
+	$('#line-height').val($(this).css('line-height').replace('px', ''));
+	$('#letter-spacing').val($(this).css('letter-spacing').replace('px', ''));
+	$('#padding-top').val($(this).css('padding-top').replace('px', ''));
+	$('#padding-left').val($(this).css('padding-left').replace('px', ''));
+	$('#border-radius').val($(this).css('border-top-left-radius').replace('px', ''));
+	$('#border-width').val($(this).css('border-width').replace('px', ''));
+	
+	console.log($(this).css('padding-top'));
+		
+	$("#color").spectrum("set", $(this).css('color'));
+	$("#background-color").spectrum("set", $(this).css('background-color'));
+	
+	$('.show-'+tagname).show();
+
+});
+
+
+
+$(function(){
+
+	  $('#font').fontselect().change(function(){
+
+	    var font = $(this).val().replace(/\+/g, ' ');
+
+	    font = font.split(':');
+
+	    $('.current-css').css('font-family', font[0]);
+		$('.current-css').css('font-weight', font[1]);
+		
+		$('#save').show().css('display', 'block');
+		
+	  });
+
+
+
+	$("input[type='number']").inputSpinner();
+	
+	$("input[type='number']").on("change", function (event) {
+		
+		let css = $(this).attr('id');
+			
+		$('.current-css').css(css, $(this).val()+'px');
+		
+		if(css=='padding-top'){
+		
+			$('.current-css').css('padding-bottom', $(this).val()+'px');
+		}
+		
+		if(css=='padding-left'){
+		
+			$('.current-css').css('padding-right', $(this).val()+'px');
+		}
+		
+		$('#save').show().css('display', 'block');
+		
+	});
+	
+	
+	$(".color").spectrum({
+		change: function(color) {
+					
+			var colr = color.toHexString();
+			let css = $(this).attr('id');
+		
+			$('.current-css').css(css, colr);
+			
+			$('#save').show().css('display', 'block');
+		}
+	});
+	
+	
+	$('#save').on('click', function(){
+		
+		$('#preview '+editable).each(function(){
+		
+			var tagname = $(this).prop("tagName").toLowerCase();
+		
+			$('#save-area').append(tagname+'{\n');
+			$('#save-area').append('font-size:'+$(this).css('font-size')+';');
+			$('#save-area').append('line-height:'+$(this).css('line-height')+';');
+			$('#save-area').append('letter-spacing:'+$(this).css('letter-spacing')+';');
+		
+			
+			/*
+			$('#padding-top').val($(this).css('padding-top').replace('px', ''));
+			$('#padding-left').val($(this).css('padding-left').replace('px', ''));
+			$('#border-radius').val($(this).css('border-top-left-radius').replace('px', ''));
+			$('#border-width').val($(this).css('border-width').replace('px', ''));
+			*/
+			
+			$('#save-area').append('color:'+$(this).css('color')+';');
+			$('#save-area').append('background-color:'+$(this).css('background-color')+';');
+			
+		
+			
+			$('#save-area').append('\n}\n\n');
+			
+			
+			$('#save-area').show();
+		
+		});
+		
+		
+	});
+
+});
+
+
+
+</script>
+
+<style>
+
+body {
+	margin-top: 75px;
+}
+
+
+
+.row {
+	margin-bottom: 25px;
+	
+}
+
+.col-md-1 {
+
+	color: #999;
+	font-family: Georgia;
+}
+
+
+label {
+	margin-bottom:  3px;
+	margin-top:  20px;
+}
+
+
+
+.toolpane{
+width: 280px;
+min-height: 300px;
+border: 1px solid black;
+border-radius: 4px;
+
+background-color:  white;
+}
+
+#toolpane-header {
+	padding:  10px 15px 10px 15px;
+	border-bottom:  1px solid black;
+	font-weight:  600;
+}
+
+.edit-css {
+	display:  none;
+}
+
+.content {
+	padding:  15px;
+	padding-bottom:  25px;
+}
+
+/*
+.current-css {
+	border: 1px solid lightblue !important;
+}
+*/
+
+#save {
+	display:  none;
+	border: 1px solid black !important;
+	width:  280px;
+	padding: 10px;
+	text-align:  center;
+	border-radius:  4px;
+	margin-top: 10px;
+	cursor:  pointer;
+
+}
+
+#save:hover {
+	background-color: #777;
+	color:  white;
+}
+
+textarea {
+	border:  1px solid black;
+	max-width:  100%;
+	width:  100%;
+	height: 300px;
+	resize: none;
+	display:  none;
+}
+
+</style>
+
+</body>
+</html>
