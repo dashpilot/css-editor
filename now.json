@@ -1,0 +1,8 @@
+{
+  "name": "css-editor",
+  "builds": [
+     { "src": "*.html", "use": "@now/static" },
+     { "src": "*.js", "use": "@now/static" },
+     { "src": "*.css", "use": "@now/static" }
+   ]
+}
